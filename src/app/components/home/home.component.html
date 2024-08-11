@@ -1,0 +1,21 @@
+<div class="home">
+  <div class="files p-3">
+    <div class="title header h1 text-center m-3">Your Sheets</div>
+    @if(backendCallInProgress){
+    <app-loader></app-loader>
+    } @else{
+    <div class="files-container container p-3">
+      <div
+        *ngFor="let file of files"
+        class="file-card"
+        (click)="goToFile(file)"
+      >
+        <span class="name">
+          {{ file.name | slice : 0 : file.name.length - 4 }}
+        </span>
+        <span class="badge text-bg-secondary type">{{ file.mimeType }}</span>
+      </div>
+    </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&display=swap');
+.problems{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+h2{
+    font-family: "Edu AU VIC WA NT Hand", cursive;
+    font-optical-sizing: auto;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+
+.problems-container{
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+tr, th, tbody, thead,td{
+    border:0px !important;
+}
+
+table{
+    border: 0.5px solid #e1e3e5 !important;
+    border-radius: 100px;
+    text-transform: capitalize;
+}
+thead{
+    border-bottom: 0.5px solid #eff1f3 !important;
+}
+
+th{
+    background-color: #f8fafc;
+}
+
+tr:hover td{
+    background-color: #f8fafc;
+}
+
+.solve-button{
+    width: 60px;
+    height: 32px;
+    box-sizing: border-box;
+    border-radius: 14px !important;
+    background-color: var(--extra-light-purple) !important;
+    color:var(--dark-purple) !important;
+    text-decoration: none;
+}
+td {
+    vertical-align: middle;
+}
+
+td,th{
+    padding: 10px 30px;
+}
+
+
+.badge{
+    width:15px;
+    height:15px;
+    display: inline-block !important;
+    position: relative;
+    top:3px;
+}
+
+.options{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:100%;
+}
+
+.filter{
+    display: flex;
+    flex-direction: row;
+    background-color: #BDC1CAFF;
+    border-radius: 5px;
+    padding:  2px;
+}
+
+.filter button{
+    padding:5px;
+    width:100px;
+    /* margin-right: 5px; */
+    border: 0.5px solid transparent;
+    border-radius: 5px;
+    background-color: transparent;
+    transition: 0.1s all ease-in;
+}
+.filter button.selected{
+    background-color: var(--white);
+
+}
+
+.sort>button{
+    padding:5px;
+    width:200px;
+    margin-right: 5px;
+    border: 0.5px solid transparent;
+    border-radius: 5px;
+    background-color: #BDC1CAFF;
+    color:var(--black);
+}
+.sort ul button{
+    width:200px;
+}
+
+.sort ul button:active,.dd-button:active,.dd-button.active{
+    background-color: var(--extra-light-purple);
+    color:var(--black);
+}
+
+
+.status-dropdown{
+    width: 135px;
+    text-align: left;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,8 @@
+.dd-button, .dd-button:hover{
+    color:var(--black);
+    background-color: var(--white);
+}
+.dd-button:active{
+    background-color: var(--extra-light-purple);
+}
+

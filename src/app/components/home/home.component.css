@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&display=swap');
+.file-card {
+    width: 300px;
+    height: 130px;
+    border: 0.5px solid var(--light-purple);
+    padding: 15px;
+    border-radius: var(--border-radius);
+    transition: 0.3s all ease;
+    position: relative;
+}
+
+.file-card:hover{
+    box-shadow:0px 4px 9px rgba(23, 26, 31, 0.11), 0px 0px 2px rgba(23, 26, 31, 0.12);
+    cursor: pointer;
+    border: 1px solid var(--dark-purple);;
+}
+
+.files-container {
+    display: flex;
+    flex-direction: row;
+    flex-direction: wrap;
+    column-gap: 50px;
+}
+.name{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-family: "Edu AU VIC WA NT Hand", cursive;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+
+
+.title{
+    font-weight: bold;
+    font-family: "Edu AU VIC WA NT Hand", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.type{
+    position: absolute;
+    top:10%;
+    right:5%;
+    font-size: small;
+    font-weight: 100;
+}

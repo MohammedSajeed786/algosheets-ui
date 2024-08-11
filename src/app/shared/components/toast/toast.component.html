@@ -1,0 +1,15 @@
+@if(toastMessage?.show){
+<div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+  <div class="toast-header">
+    <span [class]="'circle rounded me-2 bg-'+toastMessage?.type"> </span>
+    <strong class="me-auto">Important</strong>
+    <button
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="toast"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="toast-body">{{toastMessage?.message}}</div>
+</div>
+}

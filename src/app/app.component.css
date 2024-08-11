@@ -1,0 +1,25 @@
+.app {
+  flex: 1;
+  height: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+app-header {
+  flex: 0 0 10%;
+  /* Take 20% of the height */
+}
+
+.content {
+  flex: 1;
+  /* Take the remaining height */
+  overflow: auto;
+  /* Enable scrolling if content overflows */
+}
+
+app-toast {
+  position: fixed;
+  top: 10%;
+  right: 1%;
+}
