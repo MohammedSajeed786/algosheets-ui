@@ -13,9 +13,7 @@ app-header {
 
 .content {
   flex: 1;
-  /* Take the remaining height */
   overflow: auto;
-  /* Enable scrolling if content overflows */
 }
 
 app-toast {
