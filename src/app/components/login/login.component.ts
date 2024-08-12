@@ -118,6 +118,11 @@ export class LoginComponent implements OnInit {
     }));
   }
 
+
+  login(){
+    this.oAuthButtonRef.nativeElement.click();
+  }
+
   ngOnDestroy() {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
