@@ -6,18 +6,15 @@
   <div class="problems-container m-3">
     <div class="options">
       <div class="filter">
-        <button
-          [class]="filterId == 0 ? 'selected' : ''"
-          (click)="filterProblems(0)"
-        >
-          All
-        </button>
         @for (status of statuses; track status.statusId) {
         <button
           [class]="filterId == status.statusId ? 'selected' : ''"
           (click)="filterProblems(status.statusId)"
         >
-          {{ status.type }}
+          {{ status.type }}&nbsp;
+          <span class="count">
+            ({{status.count}})
+          </span>
         </button>
         }
       </div>
@@ -60,8 +57,9 @@
         </tr>
       </thead>
       <tbody class="">
-        @for(problem of problems;track problem.problemId){ @if
-        (filterId==0||problem.status==filterId) {
+        @for(problem of problems;track problem.problemId){
+        @if(filterId==0||problem.status==filterId||(filterId==4 &&
+        (problem.status==2 || problem.status==3))) {
         <tr>
           <td class="">{{ problem.problemName }}</td>
           <td>{{ problem.numOccur }}</td>
@@ -75,12 +73,13 @@
             >
               <span
                 class="badge rounded-5 me-1"
-                [ngClass]="statuses[problem.status - 1].color"
+                [ngClass]="statuses[problem.status].color"
               ></span>
-              {{ statuses[problem.status - 1].type }}
+              {{ statuses[problem.status].type }}
             </button>
             <ul class="dropdown-menu">
-              @for(status of statuses;track status.statusId){
+              @for(status of statuses;track status.statusId) { @if(status.show)
+              {
               <li>
                 <button
                   class="dropdown-item dd-button"
@@ -96,7 +95,7 @@
                   {{ status.type }}
                 </button>
               </li>
-              }
+              } }
             </ul>
           </td>
 
@@ -116,6 +115,5 @@
       </tbody>
     </table>
   </div>
-}
+  }
 </div>
-

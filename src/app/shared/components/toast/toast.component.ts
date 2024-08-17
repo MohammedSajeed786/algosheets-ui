@@ -20,4 +20,8 @@ export class ToastComponent implements OnInit {
       },
     });
   }
+
+  closeToast(){
+    this.toastService.hideToast();
+  }
 }

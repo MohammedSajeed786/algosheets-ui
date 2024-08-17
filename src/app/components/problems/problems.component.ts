@@ -22,19 +22,39 @@ export class ProblemsComponent implements OnInit {
   subscriptions: Subscription[] = [];
   statuses: Status[] = [
     {
+      statusId: 0,
+      type: 'All',
+      color: '',
+      show: false,
+      count: 0,
+    },
+    {
       statusId: 1,
       type: 'Unsolved',
       color: 'bg-danger',
+      show: true,
+      count: 0,
     },
     {
       statusId: 2,
       type: 'Solved',
       color: 'bg-success',
+      show: true,
+      count: 0,
     },
     {
       statusId: 3,
       type: 'Revision',
       color: 'bg-warning',
+      show: true,
+      count: 0,
+    },
+    {
+      statusId: 4,
+      type: 'Attempted',
+      color: '',
+      show: false,
+      count: 0,
     },
   ];
   constructor(
@@ -56,7 +76,7 @@ export class ProblemsComponent implements OnInit {
       this.problemsService.getProblems(this.fileId).subscribe({
         next: (res) => {
           this.problems = res.problems;
-          this.assignIdsToProblems();
+          this.assignIdsAndCountProblems();
           this.backendCallInProgress = false;
         },
         error: (err) => {
@@ -67,9 +87,17 @@ export class ProblemsComponent implements OnInit {
     );
   }
 
-  assignIdsToProblems() {
-    for (let i = 0; i < this.problems.length; i++)
+  assignIdsAndCountProblems() {
+    for (let i = 0; i < this.problems.length; i++){
       this.problems[i].problemId = i + 1;
+      this.statuses[this.problems[i].status].count++;
+      if(this.problems[i].status==2 || this.problems[i].status==3) {
+        this.statuses[4].count++;
+      }
+
+      this.statuses[0].count++;
+
+    }
   }
 
   filterProblems(filterId: number) {
@@ -82,24 +110,38 @@ export class ProblemsComponent implements OnInit {
     );
 
     let oldStatus = this.problems[currProblemIndex].status;
-    this.problems[currProblemIndex].status = statusId;
 
-    this.backendCallInProgress = true;
-    this.subscriptions.push(
-      this.problemsService
-        .updateProblems(this.fileId, this.problems)
-        .subscribe({
-          next: (res) => {
-            this.toastService.showToast(res, 'success');
-            this.backendCallInProgress = false;
-          },
-          error: (err) => {
-            this.toastService.showToast(err.message, 'danger');
-            this.problems[currProblemIndex].status = oldStatus;
-            this.backendCallInProgress = false;
-          },
-        })
-    );
+    if (oldStatus != statusId) {
+      this.problems[currProblemIndex].status = statusId;
+
+      this.backendCallInProgress = true;
+      this.subscriptions.push(
+        this.problemsService
+          .updateProblems(this.fileId, this.problems)
+          .subscribe({
+            next: (res) => {
+              this.toastService.showToast(res, 'success');
+              this.backendCallInProgress = false;
+              this.statuses[statusId].count++;
+
+              //unsolved to solved/revision
+              if (oldStatus==1 && (statusId==2 || statusId==3) ) {
+                this.statuses[4].count++;
+              }
+              else if((oldStatus==2 || oldStatus==3) && statusId==1) this.statuses[4].count--; //solved/revision to unsolved
+
+              this.statuses[oldStatus].count--;
+
+              
+            },
+            error: (err) => {
+              this.toastService.showToast(err.message, 'danger');
+              this.problems[currProblemIndex].status = oldStatus;
+              this.backendCallInProgress = false;
+            },
+          })
+      );
+    }
   }
 
   sortProblems(order: number) {

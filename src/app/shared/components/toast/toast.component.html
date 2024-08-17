@@ -8,6 +8,7 @@
       class="btn-close"
       data-bs-dismiss="toast"
       aria-label="Close"
+      (click)="closeToast()"
     ></button>
   </div>
   <div class="toast-body">{{toastMessage?.message}}</div>

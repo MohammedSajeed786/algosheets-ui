@@ -12,5 +12,7 @@ export interface Problem {
 export interface Status{
   statusId:number,
   type:string,
-  color:string
+  color:string,
+  show:boolean,
+  count:number
 }
